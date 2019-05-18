@@ -1,7 +1,6 @@
 package com.pilab.yunnan;
 
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -12,8 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.pilab.yunnan.data.Sql;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -49,9 +55,7 @@ public class HomeFragment extends Fragment {
 
     private void intiTraditional(View view) {
         traditionalList.clear();
-        for (int i = 0; i < traditionals.length; i++) {
-            traditionalList.add(traditionals[i]);
-        }
+        traditionalList.addAll(Arrays.asList(traditionals));
 //        for (int i = 0; i < 10; i++) {
 //            Random random = new Random();
 //            int index = random.nextInt(traditionals.length);
@@ -59,43 +63,8 @@ public class HomeFragment extends Fragment {
 //
 //        }
 
-    }
-
-    //方法：发送网络请求，获取百度首页的数据。在里面开启线程
-    private void sendRequestWithHttpClient() {
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                //用HttpClient发送请求，分为五步
-                //第一步：创建HttpClient对象
-                HttpClient httpCient = new DefaultHttpClient();
-                //第二步：创建代表请求的对象,参数是访问的服务器地址
-                HttpGet httpGet = new HttpGet("http://www.baidu.com");
-
-                try {
-                    //第三步：执行请求，获取服务器发还的相应对象
-                    HttpResponse httpResponse = httpCient.execute(httpGet);
-                    //第四步：检查相应的状态是否正常：检查状态码的值是200表示正常
-                    if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                        //第五步：从相应对象当中取出数据，放到entity当中
-                        HttpEntity entity = httpResponse.getEntity();
-                        String response = EntityUtils.toString(entity,"utf-8");//将entity当中的数据转换为字符串
-
-                        //在子线程中将Message对象发出去
-                        Message message = new Message();
-                        message.what = SHOW_RESPONSE;
-                        message.obj = response.toString();
-                        handler.sendMessage(message);
-                    }
-
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();//这个start()方法不要忘记了
 
     }
+
+
 }
