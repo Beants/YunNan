@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.pilab.yunnan.data.Traditional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +53,13 @@ public class TraditionalAdapter extends RecyclerView.Adapter<TraditionalAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Traditional traditional = traditionals.get(position);
-        holder.type.setText(traditional.getType());
+        holder.title.setText(traditional.getTitle());
         holder.info.setText(traditional.getInfo());
-        Glide.with(context).load(traditional.getImgUrl()).into(holder.image);
+        holder.id = traditional.getId();
+        holder.imgUrl = traditional.getImage();
+        holder.detail = traditional.getDetail();
+        holder.star = traditional.getStar();
+        Glide.with(context).load(traditional.getImage()).into(holder.image);
 
     }
 
@@ -65,22 +71,32 @@ public class TraditionalAdapter extends RecyclerView.Adapter<TraditionalAdapter.
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView image;
-        TextView type;
+        TextView title;
         TextView info;
+        String id;
+        String detail;
+        String imgUrl;
+        List<String> star;
 //        ImageButton like;
 
 
         public ViewHolder(final View itemView) {
             super(itemView);
             cardView = (CardView) itemView;
-            image = (ImageView) itemView.findViewById(R.id.tr_image);
-            type = (TextView) itemView.findViewById(R.id.tr_type);
-            info = (TextView) itemView.findViewById(R.id.tr_info);
+            image = itemView.findViewById(R.id.tr_image);
+            title = itemView.findViewById(R.id.tr_title);
+            info = itemView.findViewById(R.id.tr_info);
             this.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), "onclick", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(v.getContext(), "onclick", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(v.getContext(), traditionalDetail.class);
+                    intent.putExtra("_id", id);
+                    intent.putExtra("detail", detail);
+                    intent.putExtra("title", title.getText());
+                    intent.putExtra("image", imgUrl);
+                    ArrayList<String> temp = new ArrayList<>(star);
+                    intent.putStringArrayListExtra("star",temp);
                     v.getContext().startActivity(intent);
                 }
             });

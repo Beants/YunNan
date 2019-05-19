@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/coordinatorLayout_detail"
 
     >
 
@@ -22,7 +23,7 @@
 
 
             <ImageView
-                android:id="@+id/main.backdrop"
+                android:id="@+id/image_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/todo"
@@ -72,8 +73,6 @@
                 card_view:cardElevation="2dp">
 
                 <WebView
-
-
                     android:id="@+id/info_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -91,6 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/hui"
         android:src="@drawable/ic_favorite_black_24dp" />
 
 

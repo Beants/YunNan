@@ -1,6 +1,7 @@
 package com.pilab.yunnan.data;
 
 public class User {
+    private String _id;
     private String username;
     private String password;
 
@@ -18,5 +19,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 }

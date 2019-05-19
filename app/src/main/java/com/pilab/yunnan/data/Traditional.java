@@ -2,7 +2,7 @@ package com.pilab.yunnan.data;
 
 import java.util.List;
 
-public class Info {
+public class Traditional {
     private String id;
     private String image;
     private String title;
