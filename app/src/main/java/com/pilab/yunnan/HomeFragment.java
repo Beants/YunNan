@@ -133,12 +133,12 @@ public class HomeFragment extends Fragment {
                             stars.add(ss.split(",")[s].replace("\"",""));
                         }
                         info.setStar(stars);
-                        Log.i(TAG, "onResponse: " + info.getId());
+//                        Log.i(TAG, "onResponse: " + info.getId());
                         boolean add = traditionalList.add(info);
-                        Log.i(TAG, "onResponse: info.add" + add);
+//                        Log.i(TAG, "onResponse: info.add" + add);
                     }
 
-                    Log.i(TAG, "initData: traditionalList.size()" + traditionalList.size());
+                    Log.i(TAG, "initData: traditionalList finshed size:" + traditionalList.size());
                     TraditionalAdapter adapter = new TraditionalAdapter(traditionalList);
                     recyclerView.setAdapter(adapter);
 

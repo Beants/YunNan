@@ -67,18 +67,18 @@ public class traditionalDetail extends AppCompatActivity {
         star = intent.getStringArrayListExtra("star");
         star_state = "0";
         for (int i=0;i<star.size();i++){
-            Log.i(TAG, "onCreate: "+star.get(i)+user_id);
+//            Log.i(TAG, "onCreate: "+star.get(i)+user_id);
             if (star.get(i).equals(user_id)){
                 star_state="1";
             }
         }
 
 
-        Log.i(TAG, "onCreate: info_id" + info_id);
-        Log.i(TAG, "onCreate: user_id" + user_id);
-        Log.i(TAG, "onCreate: star" + star.toString()+star.contains(user_id));
-
-        Log.i(TAG, "onCreate: " + star_state + title + image + detail);
+//        Log.i(TAG, "onCreate: info_id" + info_id);
+//        Log.i(TAG, "onCreate: user_id" + user_id);
+//        Log.i(TAG, "onCreate: star" + star.toString()+star.contains(user_id));
+//
+//        Log.i(TAG, "onCreate: " + star_state + title + image + detail);
         initView(title, image, detail);
 
 
