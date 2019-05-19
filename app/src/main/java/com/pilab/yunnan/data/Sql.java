@@ -14,8 +14,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public class Sql {
-    //    public static String server = "http://39.96.222.175:5000";
-    public static String server = "http://192.168.2.193:5000/";
+        public static String server = "http://39.96.222.175:5000";
+//    public static String server = "http://192.168.2.193:5000/";
 
     public interface LoginService {
         @POST("/login")

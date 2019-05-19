@@ -53,7 +53,7 @@ public class TraditionalAdapter extends RecyclerView.Adapter<TraditionalAdapter.
         Traditional traditional = traditionals.get(position);
         holder.type.setText(traditional.getType());
         holder.info.setText(traditional.getInfo());
-        Glide.with(context).load(traditional.getImgId()).into(holder.image);
+        Glide.with(context).load(traditional.getImgUrl()).into(holder.image);
 
     }
 
