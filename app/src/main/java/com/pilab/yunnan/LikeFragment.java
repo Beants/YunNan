@@ -39,6 +39,7 @@ public class LikeFragment extends Fragment {
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
     private String userid;
+    private TraditionalAdapter adapter;
 
     @Nullable
     @Override
@@ -81,11 +82,10 @@ public class LikeFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 traditionalList.clear();
-
+                Log.i(TAG, "onResponse: "+response.body());
                 String jsonstr = null;
                 try {
                     jsonstr = new String(response.body().bytes());
-                    Log.i(TAG, "onResponse: jsonstr" + jsonstr);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -97,33 +97,36 @@ public class LikeFragment extends Fragment {
                     Log.i(TAG, "intiTraditional: " + type);
                     JSONArray j = jsonObject.getJSONArray("res");
                     Log.i(TAG, "initData: 开始生成traditionalList");
+                    Log.i(TAG, "onResponse: "+j.length());
 
-                    for (int i = 0; i < j.length(); i++) {
-                        JSONObject jsonObjectTemp = new JSONObject(j.get(i).toString());
+                    for (int mmm = 0; mmm < j.length(); mmm++) {
+                        JSONObject jsonObjectTemp = new JSONObject(j.get(mmm).toString());
                         Traditional info = new Traditional();
+                        Log.i(TAG, "intiTraditional:jsonObjectTemp.getString(\"_id\") " + jsonObjectTemp.getString("_id"));
+
                         info.setId(jsonObjectTemp.getString("_id"));
                         info.setDetail(jsonObjectTemp.getString("detail"));
                         info.setImage(jsonObjectTemp.getString("title"));
                         info.setTitle(jsonObjectTemp.getString("image"));
                         info.setInfo(jsonObjectTemp.getString("info").replace("\n", "").replace("\r", "").replace(" ", ""));
-
                         info.setType(jsonObjectTemp.getString("type"));
                         String ss = jsonObjectTemp.getString("star");
                         ss = ss.replace("[", "");
                         ss = ss.replace("]", "");
                         final List<String> stars = new ArrayList<>();
-                        for (int s = 0; i < ss.split(",").length; i++) {
-                            stars.add(ss.split(",")[s].replace("\"", ""));
+                        for (int ssss = 0; ssss < ss.split(",").length; ssss++) {
+                            stars.add(ss.split(",")[ssss].replace("\"", ""));
                         }
                         info.setStar(stars);
 //                        Log.i(TAG, "onResponse: " + info.getId());
-                        boolean add = traditionalList.add(info);
+                        traditionalList.add(info);
 //                        Log.i(TAG, "onResponse: info.add" + add);
                     }
 
                     Log.i(TAG, "initData: traditionalList finshed size:" + traditionalList.size());
-                    TraditionalAdapter adapter = new TraditionalAdapter(traditionalList);
+                    adapter = new TraditionalAdapter(traditionalList);
                     recyclerView.setAdapter(adapter);
+//                    adapter.notifyDataSetChanged();
 
 
                 } catch (JSONException e) {

@@ -113,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
                 String login_type = null;
                 String login_data = null;
 

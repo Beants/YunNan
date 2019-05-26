@@ -30,9 +30,19 @@ public class Sql {
 
     public interface GetInfoLikeService {
         @FormUrlEncoded
-
         @POST("/get_users_like")
         Call<ResponseBody> getInfolike(@Field("user_id") String user_id);
     }
+    public interface GetInfoKeyService {
+        @FormUrlEncoded
+        @POST("/get_info_key")
+        Call<ResponseBody> getInfoKey(@Field("key") String key);
+    }
+    public interface GetInfoTypeService {
+        @FormUrlEncoded
+        @POST("/get_info_type")
+        Call<ResponseBody> getInfoType(@Field("type") String type);
+    }
+
 }
 

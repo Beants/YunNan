@@ -109,7 +109,6 @@ public class HomeFragment extends Fragment {
 
                 try {
                     JSONObject jsonObject = new JSONObject(jsonstr);
-
                     String type = jsonObject.getString("type");
                     Log.i(TAG, "intiTraditional: " + type);
                     JSONArray j = jsonObject.getJSONArray("res");
