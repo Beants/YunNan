@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">YunNan</string>
     <string name="title_home">主页</string>
-    <string name="title_search">搜索</string>
-    <string name="title_sort">分类</string>
+    <string name="title_search">筛选</string>
+    <string name="title_like">收藏</string>
     <string name="title_person">我的</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -11,9 +11,9 @@
     <string name="title_item_detail">Item Detail</string>
     <string name="todo">TODO</string>
     <string name="title_activity_login">登录</string>
-    <string name="prompt_email">UserName</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="prompt_email">用户名</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_in">登录/注册</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>

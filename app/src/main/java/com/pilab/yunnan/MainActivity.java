@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeFragment homeFragment = new HomeFragment();
     private SearchFragment searchFragment = new SearchFragment();
-    private SortFragment sortFragment = new SortFragment();
+    private LikeFragment likeFragment = new LikeFragment();
     private PersonFragment personFragment = new PersonFragment();
     private ViewPager viewPager;
     private BottomNavigationView navigation;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         return searchFragment;
                     case 2:
-                        return sortFragment;
+                        return likeFragment;
                     case 3:
                         return personFragment;
                 }

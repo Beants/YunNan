@@ -3,11 +3,9 @@ package com.pilab.yunnan;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.CoordinatorLayout;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,10 +45,14 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        initView();
+        initUser();
+        if (username!=null){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        else initView();
 
     }
-
 
 
     private void initView() {
@@ -60,15 +62,30 @@ public class LoginActivity extends AppCompatActivity {
         constraintLayout = findViewById(R.id.constraintLayout);
         pb_login = findViewById(R.id.loading);
         bt_login.setOnClickListener(new View.OnClickListener() {
+            private String TAG;
+
+
             @Override
             public void onClick(View v) {
                 String username = et_username.getText().toString();
                 String password = et_password.getText().toString();
-                User user = new User();
-                user.setUsername(username);
-                user.setPassword(password);
-                initPost(user);
-                pb_login.setVisibility(View.VISIBLE);
+                Log.d(TAG, "onClick: " + password + "1" + username + "1");
+                if (username.equals("") || password.equals("")) {
+                    Snackbar.make(constraintLayout, " 请检查输入!", Snackbar.LENGTH_SHORT)
+                            .setAction("好的", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    et_password.setText("");
+                                }
+                            }).show();
+                } else {
+
+                    User user = new User();
+                    user.setUsername(username);
+                    user.setPassword(password);
+                    initPost(user);
+                    pb_login.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -117,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 assert login_data != null;
                 if (login_type.equals("login") && login_data.equals("password error")) {
+                    pb_login.setVisibility(View.INVISIBLE);
                     Snackbar.make(constraintLayout, "密码错误!", Snackbar.LENGTH_SHORT)
                             .setAction("好的", new View.OnClickListener() {
                                 @Override
@@ -124,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                                     et_password.setText("");
                                 }
                             }).show();
+
                 } else {
                     user.set_id(login_data);
                     SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);

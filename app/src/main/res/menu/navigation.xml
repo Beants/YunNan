@@ -20,7 +20,7 @@
         android:icon="@drawable/ic_sort_black_24dp"
         android:orderInCategory="2"
 
-        android:title="@string/title_sort" />
+        android:title="@string/title_like" />
     <item
         android:id="@+id/navigation_person"
         android:icon="@drawable/ic_person_black_24dp"

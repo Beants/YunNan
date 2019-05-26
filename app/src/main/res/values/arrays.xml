@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types">
+        <item>全部</item>
+        <item>民间文学</item>
+        <item>传统音乐</item>
+        <item>传统舞蹈</item>
+        <item>传统戏剧</item>
+        <item>曲艺</item>
+        <item>传统体育、游艺与杂技</item>
+        <item>传统美术</item>
+        <item>传统技艺</item>
+        <item>传统医药</item>
+        <item>民俗</item>
+    </string-array>
+</resources>
