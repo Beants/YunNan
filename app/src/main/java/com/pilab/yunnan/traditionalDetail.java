@@ -89,7 +89,7 @@ public class traditionalDetail extends AppCompatActivity {
         if (star_state.equals("0")) {
             fab.setImageResource(R.drawable.ic_favorite_border_black_24dp);
         } else {
-            fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+            fab.setImageResource(R.drawable.ic_favorite_red_24dp);
         }
 
         ImageView imageView = findViewById(R.id.image_detail);
@@ -169,7 +169,7 @@ public class traditionalDetail extends AppCompatActivity {
                                         }
                                     }).show();
                             star_state = "1";
-                            fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+                            fab.setImageResource(R.drawable.ic_favorite_red_24dp);
                         }
 
                     }

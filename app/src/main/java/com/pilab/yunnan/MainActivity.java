@@ -8,16 +8,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 public class MainActivity extends AppCompatActivity {
 
     private HomeFragment homeFragment = new HomeFragment();
     private SearchFragment searchFragment = new SearchFragment();
-    private LikeFragment likeFragment = new LikeFragment();
+    public LikeFragment likeFragment = new LikeFragment();
     private PersonFragment personFragment = new PersonFragment();
     private ViewPager viewPager;
-    private BottomNavigationView navigation;
-
+    public static  BottomNavigationView navigation;
+    public FragmentPagerAdapter fragmentPagerAdapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        fragmentPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 switch (position) {
@@ -79,7 +80,13 @@ public class MainActivity extends AppCompatActivity {
             public int getCount() {
                 return 4;
             }
-        });
+
+            @Override
+            public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+                super.setPrimaryItem(container, position, object);
+            }
+        };
+        viewPager.setAdapter(fragmentPagerAdapter);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

@@ -41,7 +41,7 @@ public class Sql {
     public interface GetInfoTypeService {
         @FormUrlEncoded
         @POST("/get_info_type")
-        Call<ResponseBody> getInfoType(@Field("type") String type);
+        Call<ResponseBody> getInfoType(@Field("type") int type);
     }
 
 }

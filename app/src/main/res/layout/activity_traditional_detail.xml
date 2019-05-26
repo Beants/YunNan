@@ -53,7 +53,7 @@
         android:layout_margin="16dp"
         android:backgroundTint="@color/hui"
         app:borderWidth="0dp"
-        android:src="@drawable/ic_favorite_black_24dp" />
+        android:src="@drawable/ic_favorite_red_24dp" />
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scrollView"

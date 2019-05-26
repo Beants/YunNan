@@ -68,6 +68,8 @@ public class SearchFragment extends Fragment {
                                               @Override
                                               public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                                   Log.i(TAG, "onItemSelected: " + position);
+
+                                                  initDataType(position);
                                               }
 
                                               @Override
@@ -96,7 +98,9 @@ public class SearchFragment extends Fragment {
             }
         });
     }
-    private void initDataType(String type_) {
+    private void initDataType(int type_) {
+        progressBar.setVisibility(View.VISIBLE);
+        Log.i(TAG, "initDataType: strat");
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Sql.server).build();
         Sql.GetInfoTypeService service = retrofit.create(Sql.GetInfoTypeService.class);

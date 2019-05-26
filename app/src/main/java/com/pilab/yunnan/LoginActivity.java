@@ -28,6 +28,7 @@ import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG = "";
     private EditText et_username;
     private EditText et_password;
     private Button bt_login;
@@ -36,8 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private String username;
 
     private void initUser() {
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        username = sharedPreferences.getString("username", "");
+
     }
 
     @Override
@@ -45,12 +45,16 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("username", "");
+        Log.i(TAG, "initUser: "+username);
         initUser();
-        if (username!=null){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        }
-        else initView();
+//        if (username!=null){
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//        }
+//        else
+            initView();
 
     }
 
